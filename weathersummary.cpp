@@ -1,15 +1,23 @@
+/*
+ * Driver program for weather extraction
+ * Practice for Object oriented programming
+ * Problem statement: http://codekata.com/kata/kata04-data-munging/
+ */
+
+#include "Iter.h"
+#include "List.h"
+#include "Node.h"
+#include "Weather.h"
+#include<climits>
+#include<fstream>
 #include<iostream>
 #include<sstream>
-#include<fstream>
 #include<string>
-#include "Weather.h"
-#include "Node.h"
-#include "List.h"
 
 using namespace std;
 
 int main() {
-	ifstream weather("./weatherhead.dat");
+	ifstream weather("./weather.dat");
 	string line;
 	
 	List list_of_weather_data;
@@ -23,6 +31,20 @@ int main() {
 		}
 	}
 	
-	cout << list_of_weather_data.print();
+	Iter iterator(list_of_weather_data);
 	
+	int min_spread = INT_MAX;
+	int day_of_min_spread;
+	
+	while (iterator.valid()) {
+		Node* temp = iterator.next();
+		double spread = (temp->getData()).getSpread();
+		if (spread < min_spread) {
+			min_spread = spread;
+			day_of_min_spread = temp->getData().getDay();
+		}
+	}
+	
+	cout << "The minimum temperature variation was on day: " << day_of_min_spread << endl;
+	cout << "The variation was of: " << min_spread << endl;	
 }

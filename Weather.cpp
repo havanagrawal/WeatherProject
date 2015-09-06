@@ -1,13 +1,17 @@
 #include "Weather.h"
-#include <string>
+#include<string>
 #include<sstream>
 
 Weather::Weather() {}
 
 Weather::Weather(int day_no, double max_t, double min_t) : day(day_no), max_temperature(max_t), min_temperature(min_t) {}
 
-double Weather::getSpread() {
+double Weather::getSpread() const {
 	return max_temperature - min_temperature;
+}
+
+int Weather::getDay() const{
+	return day;
 }
 
 std::string Weather::toString() const {

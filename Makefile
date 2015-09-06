@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-Wall -Werror -ansi -pedantic
-SRC=weathersummary.cpp Weather.cpp Node.cpp List.cpp
-OBJ=Weather.o Node.o List.o
+SRC=weathersummary.cpp Weather.cpp Node.cpp List.cpp Iter.cpp
+OBJ=Weather.o Node.o List.o Iter.o
 TARGET=weatherextract
 
 weatherextract: $(SRC) $(OBJ)
@@ -16,6 +16,9 @@ Node.o: Node.cpp Weather.o
 List.o: List.cpp Node.o
 	$(CC) $(CFLAGS) -c -o List.o List.cpp
 
+Iter.o: Iter.cpp List.o
+	$(CC) $(CFLAGS) -c -o Iter.o Iter.cpp
+	
 clean:
 	rm $(TARGET) *.o
 	

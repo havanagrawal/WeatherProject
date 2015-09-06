@@ -11,6 +11,10 @@ List::List(Node* first) {
 	head = first;
 }
 
+Node* List::getFirst() {
+	return head;
+}
+
 void List::addLast(Node* n) {
 	
 	if (head == NULL) {
